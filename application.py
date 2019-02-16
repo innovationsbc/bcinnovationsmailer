@@ -23,6 +23,7 @@ recaptcha = ReCaptcha(app=application)
 
 @application.route("/contact", methods = ['POST'])
 def hello():
+  # recaptcha validation
   r = requests.post('https://www.google.com/recaptcha/api/siteverify',
                         data = {'secret' :
                                 envs['RECAPTCHA_SECRET_KEY'],
