@@ -4,6 +4,7 @@ from flask import request
 from flask import jsonify
 from flask_recaptcha import ReCaptcha
 
+# get the env variables defined in the env file
 envfile = open(".envs")
 envs = {}
 for line in envfile:
@@ -25,10 +26,8 @@ recaptcha = ReCaptcha(app=application)
 def contact():
   # recaptcha validation
   r = requests.post('https://www.google.com/recaptcha/api/siteverify',
-                        data = {'secret' :
-                                envs['RECAPTCHA_SECRET_KEY'],
-                                'response' :
-                                request.form['g-recaptcha-response']})
+                        data = {'secret' : envs['RECAPTCHA_SECRET_KEY'],
+                                'response' : request.form['g-recaptcha-response']})
 
   google_response = json.loads(r.text)
 
