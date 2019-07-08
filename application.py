@@ -10,7 +10,8 @@ envs = {}
 for line in envfile:
   linesplit = line.split(':')
   try:
-    envs.update({linesplit[0].strip(): linesplit[1].strip()})
+    if linesplit[0].strip()[0] != '#':
+      envs.update({linesplit[0].strip(): linesplit[1].strip()})
   except:
     pass
 
